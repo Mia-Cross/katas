@@ -1,0 +1,30 @@
+Je lance ma fonction X avec en parametre le premier element 
+de la liste et le reste de la liste apres cet index.
+Ma fonction ajoute le premier element a l'ardoise de ma liste restante
+et si il reste des villes a visiter, je lance X avec le 
+premier elem de la liste tronquee (ou le 2eme du total) et
+le reste de la liste. sinon je return.
+Je repete l'operation jusqu'a ce qu'il n'y ait plus de villes
+a visiter ou qu'on ait atteint la fin de la liste. Quand
+nbTown = 0, on append la somme calculee et on incremente la
+boucle la plus recente. Quand la len de la liste tronquee egale
+a nbTowns, on peut retrun la liste definitive des toutes les
+sommes possibles.
+
+func X(sum, []list, index, nbTown) sum int{
+    sum += list[index]
+    if townsLeft > 1 {
+        return X(sum, index+1, list[index+1:], townsLeft - 1)
+    } else {
+        return sum
+    }
+}
+
+func Y() {
+
+}
+
+townsLeft := nbTown
+for i := 0; i < len(list) && len(list) > nbTown; {
+    sum = append (sum, X(list, i, nbTown))
+}

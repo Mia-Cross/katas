@@ -1,0 +1,45 @@
+package best_travel
+
+// import "fmt"
+
+// func possibleSumsFromSingle(sum int, ls []int, index int) []int {
+//     sums := []int{}
+//     for ; index < len(ls) ; index++ {
+//         sums = append(sums, sum + ls[index]) 
+//     }
+//     fmt.Printf("Sums out of sum = %v\n", sums)
+//     return sums
+// }
+
+// func possibleSumsFromSums(sums []int, nbTowns int, ls []int) []int {
+//     finalSums := []int{}
+//     for count := 0; count < nbTowns ; count++ {
+//         for _, sum := range sums {
+//             newSums := possibleSumsFromSingle(sum, ls, count)
+//                 finalSums = append(finalSums, newSums...)
+//         }
+//     }
+//     fmt.Printf("Sums out of sumS = %v\n", finalSums)
+//     return finalSums
+// }
+
+func 
+
+func ChooseBestSum(dmax, nbTowns int, ls []int) int {
+	closest := -1
+    sums := []int{}
+    // if nbTowns > 1 {
+    //     sums = possibleSumsFromSingle(0, ls, 0)
+    // } else {
+    for i := 0; i <= len(ls) - nbTowns; i++ {
+        sums = append(sums, possibleSumsFromSums(sums, nbTowns, ls))
+    }
+    // }
+    fmt.Printf("Sums before analysis = %v\n", sums)
+    for _, sum := range sums {
+        if sum <= dmax && sum > closest {
+            closest = sum
+        }
+    }
+	return closest
+}

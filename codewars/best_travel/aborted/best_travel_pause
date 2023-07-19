@@ -1,0 +1,29 @@
+package best_travel
+
+import "fmt"
+
+func add(sums []int, ls[]int, i int) []int {
+    fmt.Printf("Running add with i = %d\n", i)
+    for j := i + 1; j < len(ls); j++ {
+        for k := range sums {
+            fmt.Printf("Adding %d + %d\n", sums[k], ls[j])
+            sums[k] += ls[j]
+        }
+    }
+    fmt.Printf("Sums are now = %v\n", sums)
+    return sums
+}
+
+func ChooseBestSum(dmax, nbTowns int, ls []int) int {
+    closest := -1
+    sums := []int{}
+    for i := 0; i <= len(ls) - nbTowns; i++ {
+        sums = add(sums, ls, i)
+	}
+    for _, sum := range sums {
+        if sum <= dmax && sum > closest {
+            closest = sum
+        }
+    }
+	return closest
+}

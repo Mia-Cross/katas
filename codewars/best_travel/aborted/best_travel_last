@@ -1,0 +1,57 @@
+package best_travel
+
+import "fmt"
+
+func getSumsForOne(base int, ls[]int) []int {
+    sums := []int{}
+    for _, toAdd := range ls {
+        sums = append(sums, base + toAdd)
+    }
+    fmt.Printf("Sums before retrun = %v\n", sums)
+    return sums
+}
+
+func X(sum int, list[]int, index int, townsLeft int) int {
+    sum += list[index]  //wrong, j'ajoute pas celui que je veux je pense
+    if townsLeft > 1 && index + 1 < len(list) {
+        return X(sum, list[index+1:], index+1, townsLeft - 1)
+    } else {
+        return sum
+    }
+}
+
+func ChooseBestSum(dmax, nbTowns int, ls []int) int {
+	closest := -1
+    // sums := []int{}
+    toCompare := []int{}
+    sum0 := 0
+    for count := nbTowns; count > 0; count-- {
+        toCompare = getSumsForOne(0, ls[count:])
+
+    }
+    for i := 0; i <= len(ls) - nbTowns; i++ {
+    // for i := range ls {
+        sums1 := getSumsForOne(sum0, ls[0:])
+        if nbTowns > 1 {
+            for _, sum1 := range sums1 {
+                sums2 := getSumsForOne(sum1, ls[1:])
+                if nbTowns > 2 {
+                    for _, sum2 := range sums2 {
+                        sums3 := getSumsForOne(sum2, ls[2:])
+                        toCompare = append(toCompare, sums3...)
+                    }
+                } else {
+                    toCompare = append(toCompare, sums2...)
+                }
+            }
+        } else {
+            toCompare = append(toCompare, sums1...)
+        }
+    }
+    for _, sum := range toCompare {
+        if sum <= dmax && sum > closest {
+            closest = sum
+        }
+    }
+	return closest
+}

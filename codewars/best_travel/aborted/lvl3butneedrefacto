@@ -1,0 +1,32 @@
+package best_travel
+
+func ChooseBestSum(dmax, nbTowns int, ls []int) int {
+	closest := -1
+    for i := range ls {
+        sum := ls[i]
+        if nbTowns > 1 {
+            for j := i + 1; j < len(ls); j++ {
+                sum += ls[j]
+                if nbTowns > 2 {
+                    for k := j + 1; k < len(ls); k++ {
+                        sum += ls[k]
+                        if sum <= dmax && sum > closest {
+                            closest = sum
+                        }
+                        sum -= ls[k]
+                    }
+                } else {
+                    if sum <= dmax && sum > closest {
+                        closest = sum
+                    }
+                }
+                sum -= ls[j]
+            }
+        } else {
+            if sum <= dmax && sum > closest {
+                closest = sum
+            }
+        }
+    }
+	return closest
+}

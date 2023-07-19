@@ -1,0 +1,46 @@
+package best_travel
+
+// func getSums(lhsPossibilities []int, rhsPossibilities[]int) []int {
+//     sums := []int{}
+//     for i, lhs := range lhsPossibilities {
+//         for j, rhs := range rhsPossibilities {
+//             if i != j {
+//                 sums = append(sums, lhs + rhs)
+//             }
+//         }
+//     }
+//     return sums
+// }
+
+func getSumsForOne(base int, ls[]int) []int {
+    sums := []int{}
+    for _, toAdd := range ls {
+        sums = append(sums, base + toAdd)
+    }
+    return sums
+}
+
+// func function(sums[]int, ls[]int) []int {
+    // for sum in sums {
+        // getSumsForOne(sum, l)
+    // }
+// if TownLeft return function(newSums)
+    // else return sums
+// }
+
+func ChooseBestSum(dmax, nbTowns int, ls []int) int {
+	closest := -1
+    sums := []int{0}
+    // sums = getSumsForAll(sums, ls)
+    for count := nbTowns; count >= 0; count-- {
+        for _, dist := range ls {
+            sums = getSumsForOne(dist, ls)
+            for _, sum := range sums {
+                if sum <= dmax && sum > closest {
+                    closest = sum
+                }
+            }
+        }
+    }
+	return closest
+}
