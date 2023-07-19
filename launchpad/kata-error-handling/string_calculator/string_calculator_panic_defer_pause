@@ -1,0 +1,49 @@
+package string_calculator
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+	// "errors"
+)
+
+// type NegativeValueError struct {
+// 	negValue float
+// }
+
+func compute_sum(values []string) float {
+	sum := 0
+	for _, v := range values {
+		n, err := strconv.Atoi(v)
+		if err != nil {
+			panic(err)
+		} else if n < 0 {
+			panic(strconv.Itoa(n))
+			// panic(NegativeValueError{n})
+		} else {
+			sum += n
+		}
+	}
+	return sum
+}
+		
+	
+func Add(numbers string) string {
+	if len(numbers) == 0 {
+		return "0"
+	}
+	output := "" 
+	deferred := false
+	defer func() {
+		deferred = true
+		if r := recover(); r != nil {
+			// fmt.Println("ho")
+			output = fmt.Sprintf("Negative not allowed : %v", r)
+		}
+	}()
+	sum := compute_sum(strings.Split(numbers, ","))
+	if !deferred {
+		output = strconv.Itoa(sum)
+	}
+	return output
+}

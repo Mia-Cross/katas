@@ -1,0 +1,89 @@
+package string_calculator
+
+import (
+	"strconv"
+	"strings"
+)
+
+func outputErrors(errors []error) string {
+	//fmt.Println(errors)
+	var negNumbers []string
+	var toPrint []string
+	for _, err := range errors {
+		negValueError, ok := err.(NegativeValueError)
+		if ok {
+			if len(negNumbers) == 0 {
+				toPrint = append(toPrint, negValueError.Error())
+			}
+			negNumbers = append(negNumbers, negValueError.ValueStr())
+		}
+		missValueError, ok := err.(MissingValueError)
+		if ok {
+			toPrint = append(toPrint, missValueError.Error())
+		}
+	}
+	output := ""
+	for index, errorStr := range toPrint {
+		if strings.HasPrefix(errorStr, "Negative ") {
+			for i := 0; i < len(negNumbers)-1; i++ {
+				errorStr += negNumbers[i] + ", "
+			}
+			errorStr += negNumbers[len(negNumbers)-1]
+		}
+		output += errorStr
+		if index < len(toPrint)-1 {
+			output += "\n"
+		}
+	}
+	return output
+}
+
+func convertValue(value string, numbers string, index int) (float64, error) {
+	if len(value) == 0 {
+		return 0, MissingValueError{index, numbers[index]}
+	}
+	n, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return 0, err
+		// panic(err)
+	} else if n < 0 {
+		return 0, NegativeValueError{n}
+		// panic(NegativeValueError{n})
+	}
+	return n, nil
+}
+
+func getNextValue(str string, index int, separators string) (string, int) {
+	if index >= len(str) && len(str) > 1 {
+		return "", len(str)
+	}
+	for i := index; i < len(str); i++ {
+		for j := range separators {
+			if separators[j] == str[i] {
+				return string(str[index:i]), i
+			}
+		}
+	}
+	return str[index:], len(str)
+}
+
+func Add(numbers string) string {
+	if len(numbers) == 0 {
+		return "0"
+	}
+	var allErrors []error
+	sum := 0.0
+	for i := -1; i < len(numbers); {
+		value, index := getNextValue(numbers, i+1, ",\n")
+		toAdd, err := convertValue(value, numbers, i+1)
+		if err != nil {
+			allErrors = append(allErrors, err)
+		}
+		sum += toAdd
+		i = index
+	}
+	if len(allErrors) == 0 {
+		return strconv.FormatFloat(sum, 'f', -1, 64)
+	}
+	return outputErrors(allErrors)
+}

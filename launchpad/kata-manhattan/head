@@ -1,0 +1,142 @@
+============================= test session starts ==============================
+platform linux -- Python 3.8.10, pytest-4.6.9, py-1.8.1, pluggy-0.13.0
+rootdir: /home/leila/Desktop/katas/kata-manhattan
+collected 12 items
+
+test_manhattan.py FFFFFFFFFFFF                                           [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_dist_same_point_should_be_zero ______________________
+
+    def test_dist_same_point_should_be_zero():
+        p = manhattan.Point(9, 4)
+>       assert manhattan.distance(p, p) == 0
+E       assert 26 == 0
+E        +  where 26 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb735060880>, <manhattan.Point object at 0x7fb735060880>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:6: AssertionError
+____________ test_dist_two_points_when_only_x_differs_should_be_two ____________
+
+    def test_dist_two_points_when_only_x_differs_should_be_two():
+        p1 = manhattan.Point(2, 2)
+        p2 = manhattan.Point(4, 2)
+>       assert manhattan.distance(p1, p2) == 2
+E       assert 10 == 2
+E        +  where 10 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb735041d60>, <manhattan.Point object at 0x7fb734fed820>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:12: AssertionError
+_ test_dist_two_points_when_only_x_differs_in_reverse_order_should_still_be_two _
+
+    def test_dist_two_points_when_only_x_differs_in_reverse_order_should_still_be_two():
+        p1 = manhattan.Point(2, 2)
+        p2 = manhattan.Point(4, 2)
+>       assert manhattan.distance(p2, p1) == 2
+E       assert 10 == 2
+E        +  where 10 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb735021f40>, <manhattan.Point object at 0x7fb7350214c0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:18: AssertionError
+___________ test_dist_two_points_when_only_y_differs_should_be_five ____________
+
+    def test_dist_two_points_when_only_y_differs_should_be_five():
+        p1 = manhattan.Point(4, 2)
+        p2 = manhattan.Point(4, 7)
+>       assert manhattan.distance(p1, p2) == 5
+E       assert 17 == 5
+E        +  where 17 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb734fedfa0>, <manhattan.Point object at 0x7fb734fedee0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:24: AssertionError
+_ test_dist_two_points_when_only_y_differs_in_reverse_order_should_still_be_five _
+
+    def test_dist_two_points_when_only_y_differs_in_reverse_order_should_still_be_five():
+        p1 = manhattan.Point(4, 2)
+        p2 = manhattan.Point(4, 7)
+>       assert manhattan.distance(p2, p1) == 5
+E       assert 17 == 5
+E        +  where 17 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb734fac8b0>, <manhattan.Point object at 0x7fb734fac7f0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:30: AssertionError
+_____________ test_dist_two_points_when_both_differ_should_be_four _____________
+
+    def test_dist_two_points_when_both_differ_should_be_four():
+        p1 = manhattan.Point(4, 2)
+        p2 = manhattan.Point(7, 1)
+>       assert manhattan.distance(p1, p2) == 4
+E       assert 14 == 4
+E        +  where 14 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb735021910>, <manhattan.Point object at 0x7fb735021940>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:36: AssertionError
+_ test_dist_two_points_when_both_differ_in_reverse_order_should_still_be_four __
+
+    def test_dist_two_points_when_both_differ_in_reverse_order_should_still_be_four():
+        p1 = manhattan.Point(4, 2)
+        p2 = manhattan.Point(7, 1)
+>       assert manhattan.distance(p2, p1) == 4
+E       assert 14 == 4
+E        +  where 14 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb7350e7e80>, <manhattan.Point object at 0x7fb7350e7fa0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:42: AssertionError
+_________ test_dist_two_points_with_one_negative_value_should_be_seven _________
+
+    def test_dist_two_points_with_one_negative_value_should_be_seven():
+        p1 = manhattan.Point(3, -2)
+        p2 = manhattan.Point(7, 1)
+>       assert manhattan.distance(p1, p2) == 7
+E       assert 9 == 7
+E        +  where 9 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb73501d790>, <manhattan.Point object at 0x7fb73501d4f0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:47: AssertionError
+_ test_dist_two_points_with_one_negative_value_in_reverse_order_should_still_be_seven _
+
+    def test_dist_two_points_with_one_negative_value_in_reverse_order_should_still_be_seven():
+        p1 = manhattan.Point(3, -2)
+        p2 = manhattan.Point(7, 1)
+>       assert manhattan.distance(p2, p1) == 7
+E       assert 9 == 7
+E        +  where 9 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb735089970>, <manhattan.Point object at 0x7fb735089ac0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:53: AssertionError
+________ test_dist_two_points_with_only_negative_value_should_be_three _________
+
+    def test_dist_two_points_with_only_negative_value_should_be_three():
+        p1 = manhattan.Point(-3, -3)
+        p2 = manhattan.Point(-2, -1)
+>       assert manhattan.distance(p1, p2) == 3
+E       assert 9 == 3
+E        +  where 9 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb734facd60>, <manhattan.Point object at 0x7fb734faceb0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:59: AssertionError
+_ test_dist_two_points_with_only_negative_value_in_reverse_order_should_still_be_three _
+
+    def test_dist_two_points_with_only_negative_value_in_reverse_order_should_still_be_three():
+        p1 = manhattan.Point(-3, -3)
+        p2 = manhattan.Point(-2, -1)
+>       assert manhattan.distance(p2, p1) == 3
+E       assert 9 == 3
+E        +  where 9 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb734fe00a0>, <manhattan.Point object at 0x7fb734fe0430>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+
+test_manhattan.py:65: AssertionError
+_______________________________ test_coding_dojo _______________________________
+
+    def test_coding_dojo():
+>       assert manhattan.distance(manhattan.Point(1, 1), manhattan.Point(1, 1)) == 0
+E       AssertionError: assert 4 == 0
+E        +  where 4 = <function distance at 0x7fb735048820>(<manhattan.Point object at 0x7fb7350602e0>, <manhattan.Point object at 0x7fb73501d2b0>)
+E        +    where <function distance at 0x7fb735048820> = manhattan.distance
+E        +    and   <manhattan.Point object at 0x7fb7350602e0> = <class 'manhattan.Point'>(1, 1)
+E        +      where <class 'manhattan.Point'> = manhattan.Point
+E        +    and   <manhattan.Point object at 0x7fb73501d2b0> = <class 'manhattan.Point'>(1, 1)
+E        +      where <class 'manhattan.Point'> = manhattan.Point
+
+test_manhattan.py:69: AssertionError
+========================== 12 failed in 0.03 seconds ===========================
